@@ -94,6 +94,7 @@ int main_menu() { // display menu and get user choice
     while (choice < 1 || choice > 4 || cin.fail()) {
         cout << "Invalid choice. Please enter a number between 1 and 4: ";
         cin.clear(); 
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // clear input buffer
         cin >> choice;
     }
 
@@ -128,9 +129,11 @@ int select_goat(const set<Goat> &trip) { // select a goat to delete
     // validate input
     while (choice < 0 || choice >= trip.size()) {
         cout << "Invalid choice. Please enter a valid index: ";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // clear input buffer
         cin >> choice;
     }
-    return choice;
+    return choice -1 ; // adjust for 0-based index
 }
 void delete_goat(set<Goat> &trip) { // delete a goat from the trip uses select_goat function
     if (trip.empty()) {
