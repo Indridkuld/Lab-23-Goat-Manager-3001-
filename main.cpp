@@ -127,7 +127,7 @@ int select_goat(const set<Goat> &trip) { // select a goat to delete
     int choice;
     cin >> choice;
     // validate input
-    while (choice < 0 || choice >= trip.size()) {
+    while (choice < 0 || choice >= trip.size() + 1 || cin.fail()) {
         cout << "Invalid choice. Please enter a valid index: ";
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n'); // clear input buffer
